@@ -1,0 +1,19 @@
+# vscode settings
+.vscode
+
+# config
+app.env
+docker-compose.yml
+
+# db data
+redis_data
+postgres_data
+rabbitmq_data
+rabbitmq_logs
+rethinkdb_data
+
+# bininary
+bin/*
+
+# temp
+tmp

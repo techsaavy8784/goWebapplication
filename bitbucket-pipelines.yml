@@ -1,0 +1,25 @@
+image: golang:1.21-alpine
+
+pipelines:
+  # default:
+  #   - parallel:
+  #       - step:
+  #           name: "Build and Test"
+  #           script:
+  #             - go mod download
+  #             - go build -o bin/paxintrade-api cmd/main.go
+  branches:
+    release/prod:
+      - step:
+          name: "Build"
+          script:
+            - go mod download
+            - go build -o bin/paxintrade-api cmd/main.go
+      - step:
+          name: "Deploy to Production Environment"
+          deployment: Production
+          script:
+            - echo "Deploying to production environment"
+            - apk add --no-cache openssh
+            - chmod +x ./deploy_release-prod.sh
+            - ./deploy_release-prod.sh
